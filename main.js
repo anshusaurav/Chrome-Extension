@@ -25,9 +25,9 @@ function constructHistory(historyItems) {
     //favicon.src = 'chrome://favicon/' + item.url;
     titleLink.textContent = host+' '+getDate(item.lastVisitTime);
 
-    titleLink.appendChild(favicon);
+    //titleLink.appendChild(favicon);
     pageName.innerText = item.title;
-    if (item.title === '') {
+    if (item.title == '') {
       pageName.innerText = host;
     }
     var clone = document.importNode(template.content, true);
