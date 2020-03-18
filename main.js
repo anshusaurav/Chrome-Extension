@@ -3,7 +3,7 @@
 const kMillisecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
 const kOneWeekAgo = (new Date).getTime() - kMillisecondsPerWeek;
 let historyDiv = document.getElementById('historyDiv');
-const kColors = ['#89CFF0', '#ADD8E6', '#CB4EE', '#1F75FE','#008080','#15F4EE'];
+const kColors = ['#93385FFF', '#9F6B99FF', '#4F3466FF', '#301728FF'];//,'#008080','#15F4EE'];
 let $ = document.getElementById.bind(document);
 
 function constructHistory(historyItems) {
@@ -13,7 +13,7 @@ function constructHistory(historyItems) {
     let randomColor = kColors[Math.floor(Math.random() * kColors.length)];
     displayDiv.style.backgroundColor = randomColor;
     let titleLink = template.content.querySelector('.titleLink, a');
-    titleLink.style.backgroundColor = randomColor;
+    //titleLink.style.backgroundColor = 'transparent';
     let pageName = template.content.querySelector('.pageName, p');
     let removeButton = template.content.querySelector('.removeButton, button');
     let checkbox = template.content.querySelector('.removeCheck, input');
