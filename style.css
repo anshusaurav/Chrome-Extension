@@ -473,6 +473,7 @@ img {
   background-color: #ddd;
   border-radius: 8px;
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
+  font-family: 'Spartan', sans-serif;
 }
 
 #deleteSelected {
@@ -483,6 +484,7 @@ img {
   background-color: #ddd;
   border-radius: 8px;
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
+  font-family: 'Spartan', sans-serif;
   
 }
 
@@ -494,6 +496,7 @@ img {
   background-color: #ddd;
   border-radius: 8px;
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
+  font-family: 'Spartan', sans-serif;
 }
 
 #seeAll {
@@ -504,6 +507,7 @@ img {
   background-color: #ddd;
   border-radius: 8px;
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
+  font-family: 'Spartan', sans-serif;
 }
 
 #searchInput {
@@ -513,6 +517,7 @@ img {
   line-height: 1.5;
 
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
+  font-family: 'Spartan', sans-serif;
 }
 
 h1 {
