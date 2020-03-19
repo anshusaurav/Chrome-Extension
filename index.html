@@ -1,14 +1,16 @@
-<html>
+<!DOCTYPE html>
+<html lang = "en">
   <head>
     <title>History</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="d3.min.js"></script> 
     <link href="https://fonts.googleapis.com/css?family=Spartan:300,400,600,700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
     <div id="searchBar">
-      <h1>ChromeEx</h1>
+      <h1>Chrome<span>X</span></h1>
       <input id="searchInput" type="text" name="search"
         placeholder="Search">
       <input type="submit" id="searchSubmit" value="Submit">
@@ -20,9 +22,14 @@
       <input type="submit" id="removeAll" value="Remove All">
       <br>
       <br>
-      <input type="submit" id="seeAll" value="See All">
+      <input type="submit" id="seeAll" value="List All">
+      <br>
+      <br>
+      <input type="submit" id="selectAll" value="Select All">
     </div>
     <div id="historyDiv">
+    </div>
+    <div id="infographics">
     </div>
     <template id="historyTemplate">
       <div class="history">

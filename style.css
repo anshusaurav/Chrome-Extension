@@ -348,11 +348,13 @@ template {
   display: none;
 }
 ::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
+    /* width: 5px;  remove scrollbar space */
+    /* margin-left: 1rem; */
     background: transparent;  /* make scrollbar invisible */
 }
 
 #searchBar {
+  
   float: left;
   width: 250px;
   height: auto;
@@ -364,17 +366,22 @@ body{
   line-height: 1.5;
 }
 .container{
-  width: 1280px;
+  width: 1400px;
   margin: 0 auto;
 }
-
+span{
+  font-weight: 800;
+  font-size: 3rem;
+}
 #historyDiv {
+  float: left;
   display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   grid-gap: 1rem;
   color: white;
-  font-size: 16px;
-  /* max-width: 1020px;
+  font-size: 12px;
+   max-width: 700px;
+  /*
   min-width: 320px;
   max-height: 98vh;
   min-height: 500px; */
@@ -385,11 +392,20 @@ body{
   overflow-x: hidden;
   margin: 1rem;
 }
-
+#infographics{
+  /* position: fixed;
+  left: 1080px; */
+  border: 4px groove rgb(73, 45, 70);
+  width: 320px;
+  height: 100vh;
+  padding: 1rem;
+  float: left;
+  margin-top: 1rem;
+}
 .history {
   
-  margin: 0 10px;
-  width: 300px;
+  /* margin: 0 10px; */
+  /* width: 300px; */
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -431,7 +447,7 @@ img {
 }
 .imageDiv {
   /* background-color: white; */
-  width: 310px;
+  /* width: 310px; */
   /* height: 20px; */
   position: relative;
   right: 0;
@@ -454,7 +470,7 @@ img {
     right: 0;
     top: -10; */
   height: 90px;
-  width: 300px;
+  /* width: 300px; */
   overflow-y: hidden;
 }
 
@@ -519,7 +535,16 @@ img {
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
 }
-
+#selectAll{
+  height: 30px;
+  width: 185px;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  background-color: #ddd;
+  border-radius: 8px;
+  box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
+  font-family: 'Spartan', sans-serif;
+}
 h1 {
   font-size: 2.6hirem;
   font-family: 'Spartan', sans-serif;
@@ -531,6 +556,26 @@ h1 {
   color: white;
   /* background-color: transparent; */
 }
-.historyTemplate{
+/* .historyTemplate{
  
+} */
+
+
+
+.widget {
+  margin: 0 auto;
+  width: 350px;
+  margin-top: 20px;
+  background-color: #ccc;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px 0px rgba(0,0,0,.4);
+
+}
+
+.shadow {
+  -webkit-filter: drop-shadow( 0px 3px 3px rgba(0,0,0,.5) );
+  filter: drop-shadow( 0px 3px 3px rgba(0,0,0,.5) );
+}
+.legend{
+  font-family: 'Spartan', sans-serif;
 }
