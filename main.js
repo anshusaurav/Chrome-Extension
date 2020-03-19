@@ -3,7 +3,7 @@
 const kMillisecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
 const kOneWeekAgo = (new Date).getTime() - kMillisecondsPerWeek;
 let historyDiv = document.getElementById('historyDiv');
-let infographicDiv = document.querySelector('#infographics')
+let infoOneDiv = document.querySelector('#infoOne')
 const kColors = ['#93385FFF', '#9F6B99FF', '#4F3466FF', '#a04c85'];//,'#008080','#15F4EE'];
 let $ = document.getElementById.bind(document);
 let map = new Map();
@@ -107,13 +107,13 @@ function constructHistory(historyItems) {
   var outerRadius=w/2;
   var innerRadius=100;
   
-  var color = d3.scale.category10();
+  var color = d3.scale.category20b();
   
   var arc=d3.svg.arc()
     .outerRadius(outerRadius)
     .innerRadius(innerRadius);
   
-  var svg=d3.select("#infographics")
+  var svg=d3.select("#infoOne")
     .append("svg")
     .attr({
         width:w,
@@ -131,7 +131,7 @@ function constructHistory(historyItems) {
         d:arc,
         fill:function(d,i){
             console.log(color(d.data.name));
-            return color(d.data.name);
+            return color(d.data.name);//shadeColor(d.color.percent);//color(d.data.name);
         }
     });
   
@@ -200,7 +200,7 @@ function constructHistory(historyItems) {
           .text(function(d){
               return d;
           }).style({
-              fill:'#237',
+              fill:'#fff',
               'font-size':'14px'
           });
   };
@@ -217,7 +217,7 @@ chrome.history.search({
 
 $('searchSubmit').onclick = function() {
   historyDiv.innerHTML = " ";
-  infographicDiv.innerHTML = '';
+  infoOne.innerHTML = '';
   let searchQuery = document.getElementById('searchInput').value;
   chrome.history.search({
         text: searchQuery,
@@ -321,4 +321,24 @@ function shorten(str,n){
     return str.substr(0,n*22)+'...';
   }
   return str;
+}
+function shadeColor(color, percent) {
+  color = '#341252';
+  var R = parseInt(color.substring(1,3),16);
+  var G = parseInt(color.substring(3,5),16);
+  var B = parseInt(color.substring(5,7),16);
+
+  R = parseInt(R * (100 + percent) / 100);
+  G = parseInt(G * (100 + percent) / 100);
+  B = parseInt(B * (100 + percent) / 100);
+
+  R = (R<255)?R:255;  
+  G = (G<255)?G:255;  
+  B = (B<255)?B:255;  
+
+  var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
+  var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
+  var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+
+  return "#"+RR+GG+BB;
 }

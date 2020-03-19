@@ -22,6 +22,7 @@
 
 body {
   margin: 0;
+  background: linear-gradient(to right, #F93D66, #6D47D9);
 }
 
 /**
@@ -369,6 +370,7 @@ body{
 span{
   font-weight: 800;
   font-size: 3rem;
+  font-family: 'Dancing Script', cursive;
 }
 #historyDiv {
   float: left;
@@ -451,18 +453,23 @@ img {
 #searchSubmit {
   height: 30px;
   cursor: pointer;
-  color: rgb(0, 0, 0);
+  color: rgb(60, 35, 82);
+  font-weight: 800;
+  font-size: 14px;
   background-color: #ddd;
   border-radius: 8px;
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
+
 }
 
 #deleteSelected {
   height: 30px;
   width: 185px;
   cursor: pointer;
-  color: rgb(0, 0, 0);
+  color: rgb(60, 35, 82);
+  font-weight: 800;
+  font-size: 14px;
   background-color: #ddd;
   border-radius: 8px;
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
@@ -474,7 +481,9 @@ img {
   height: 30px;
   width: 185px;
   cursor: pointer;
-  color: rgb(0, 0, 0);
+  color: rgb(60, 35, 82);
+  font-weight: 800;
+  font-size: 14px;
   background-color: #ddd;
   border-radius: 8px;
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
@@ -485,7 +494,9 @@ img {
   height: 30px;
   width: 185px;
   cursor: pointer;
-  color: rgb(0, 0, 0);
+  color: rgb(60, 35, 82);
+  font-weight: 800;
+  font-size: 14px;
   background-color: #ddd;
   border-radius: 8px;
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
@@ -497,7 +508,9 @@ img {
   border-radius: 8px;
   padding-left: 4px;
   line-height: 1.5;
-
+  color: rgb(60, 35, 82);
+  font-weight: 400;
+  font-size: 12px;
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
 }
@@ -505,15 +518,19 @@ img {
   height: 30px;
   width: 185px;
   cursor: pointer;
-  color: rgb(0, 0, 0);
+  color: rgb(60, 35, 82);
+  font-weight: 800;
+  font-size: 14px;
   background-color: #ddd;
   border-radius: 8px;
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
 }
 h1 {
-  font-size: 2.6hirem;
+  font-size: 2.4rem;
+  font-weight: 500;
   font-family: 'Spartan', sans-serif;
+  color: rgb(60, 35, 82);
 }
 .titleLink{
   display: block;
@@ -539,4 +556,9 @@ h1 {
 }
 .legend{
   font-family: 'Spartan', sans-serif;
+  /* color: white; */
+}
+h2{
+  font-family: 'Spartan', sans-serif;
+  text-align: center;
 }
