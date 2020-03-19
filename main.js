@@ -4,7 +4,7 @@ const kMillisecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
 const kOneWeekAgo = (new Date).getTime() - kMillisecondsPerWeek;
 let historyDiv = document.getElementById('historyDiv');
 let infographicDiv = document.querySelector('#infographics')
-const kColors = ['#93385FFF', '#9F6B99FF', '#4F3466FF', '#301728FF'];//,'#008080','#15F4EE'];
+const kColors = ['#93385FFF', '#9F6B99FF', '#4F3466FF', '#a04c85'];//,'#008080','#15F4EE'];
 let $ = document.getElementById.bind(document);
 let map = new Map();
 function constructHistory(historyItems) {
@@ -15,7 +15,9 @@ function constructHistory(historyItems) {
     displayDiv.style.backgroundColor = randomColor;
     let titleLink = template.content.querySelector('.titleLink, a');
     //titleLink.style.backgroundColor = 'transparent';
+    
     let pageName = template.content.querySelector('.pageName, p');
+    let visittime = template.content.querySelector('.visitTime, p');
     let removeButton = template.content.querySelector('.removeButton, button');
     let checkbox = template.content.querySelector('.removeCheck, input');
     checkbox.setAttribute('value', item.url);
@@ -34,9 +36,9 @@ function constructHistory(historyItems) {
     }
     //favicon.src = 'chrome://favicon/' + item.url;
     titleLink.textContent = shorten(host,2)+'\n'+getDate(item.lastVisitTime);// + ' Total Visits: ' + item.visitCount + ' Total Typed: ' + item.typedCount;
-
+    visittime.innerHTML = getDate(item.lastVisitTime);
     //titleLink.appendChild(favicon);
-    pageName.innerText = shorten(item.title,4);
+    pageName.innerText = item.title;
     if (item.title == '') {
       pageName.innerText = host;
     }
@@ -175,9 +177,6 @@ function constructHistory(historyItems) {
           .attr({
               class:'legend',
               transform:function(d,i){
-                  //Just a calculation for x & y position
-                  //return "translate(0," +  i * (legendHeight+10) + ")";
-
                   return 'translate(-100,' + ((i*legendHeight)+180) + ')';
               }
           });

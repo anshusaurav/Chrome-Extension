@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "History Eval",
+  "name": "Chrome X",
   "description": "Show history",
   "version": "1.0",
   "chrome_url_overrides":{
