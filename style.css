@@ -404,7 +404,7 @@ span{
   margin-top: 1rem;
   position: fixed;
   top: 0px;
-  left: 1080px;
+  right: 80px;
   overflow: scroll;
   overflow-x: hidden;
 }
@@ -462,8 +462,19 @@ img {
   border-radius: 8px;
   border: 2px groove rgb(73, 45, 70);
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
+  font-size: 24px;
+  font-weight: 500;
+  color: rgb(73, 18, 18);
+  cursor: pointer;
 }
-
+.removeCheck{
+  font-size: 24px;
+  font-weight: 500;
+  border-radius: 8px;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}
 .urlDiv {
   /* height: 90px; */
   overflow-y: hidden;
@@ -615,7 +626,8 @@ text{
 }
 .cardBackground{
   position: absolute;
-  background: linear-gradient(to bottom,#6D47D9, #35b969);
+  background: #59a8f1;
+  /* background: linear-gradient(to bottom,#6D47D9, #35b969); */
   font-size: 72px;
   /* opacity: 0.05; */
   width: 100%;
@@ -636,6 +648,7 @@ text{
 .bgSpan{
   font-size: 72px;
   font-weight: 700;
+  color:aquamarine;
   -webkit-user-select: none;
   font-family: 'Spartan', sans-serif;
 }

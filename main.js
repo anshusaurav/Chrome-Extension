@@ -13,7 +13,9 @@ let mapTransition = new Map();
 function constructHistory(historyItems) {
   let template = $('historyTemplate');
   
-  for (let item of historyItems) {
+  for (let item of historyItems) 
+  if(item.title != 'History')
+  {
     let displayDiv = template.content.querySelector(".history, div");
     let randomColor = kColors[Math.floor(Math.random() * kColors.length)];
     displayDiv.style.backgroundColor = randomColor;
