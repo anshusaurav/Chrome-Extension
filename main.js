@@ -3,9 +3,7 @@
 const kMillisecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
 const kOneWeekAgo = (new Date).getTime() - kMillisecondsPerWeek;
 let historyDiv = document.getElementById('historyDiv');
-let infoOneDiv = document.querySelector('#infoOne')
-//let infoTwoDiv = document.querySelector('#infoTwo');
-
+let infoOneDiv = document.querySelector('#infoOne');
 const kColors = ['#93385FFF', '#9F6B99FF', '#4F3466FF', '#a04c85'];//,'#008080','#15F4EE'];
 let $ = document.getElementById.bind(document);
 let mapDomain = new Map();
@@ -47,7 +45,7 @@ function constructHistory(historyItems) {
    
     titleLink.textContent = `${host}`;// + ' Total Visits: ' + item.visitCount + ' Total Typed: ' + item.typedCount;
     //visitTimer.textContent = ''+getDate(item.lastVisitTime);
-    pageName.innerText = `${shorten(item.title,2)} \n ${getDate(item.lastVisitTime)}`;
+    pageName.innerHTML = `${shorten(item.title,2)}  <br> <span class='timeVis'>${getDate(item.lastVisitTime)}</span>`;
     
     console.log('BUGCARD ' + getUniqueAlph(getMainDomain(item.url)));
     bgSpan.innerHTML = getUniqueAlph(getMainDomain(item.url));
@@ -235,7 +233,7 @@ chrome.history.search({
 
 $('searchSubmit').onclick = function() {
   historyDiv.innerHTML = " ";
-  infoOne.innerHTML = '';
+  //infoOne.innerHTML = '';
   let searchQuery = document.getElementById('searchInput').value;
   chrome.history.search({
         text: searchQuery,
@@ -264,8 +262,9 @@ $('seeAll').onclick = function() {
 }
 $('selectAll').onclick = function(){
   let checkboxes = document.getElementsByTagName('input');
+  
   for (var i =0; i<checkboxes.length; i++) {
-    checkboxes[i].checked = true;
+    checkboxes[i].checked = !checkboxes[i].checked;//true;
   }
   //location.reload();
 }

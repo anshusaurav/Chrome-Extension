@@ -379,6 +379,7 @@ span{
   font-weight: 800;
   font-size: 3rem;
   font-family: 'Dancing Script', cursive;
+  color: rgb(139, 54, 39);
 }
 #historyDiv {
   float: left;
@@ -405,8 +406,6 @@ span{
   position: fixed;
   top: 0px;
   right: 80px;
-  overflow: scroll;
-  overflow-x: hidden;
 }
 .history {
   
@@ -464,7 +463,7 @@ img {
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-size: 24px;
   font-weight: 500;
-  color: rgb(73, 18, 18);
+  color: rgb(192, 72, 72);
   cursor: pointer;
 }
 .removeCheck{
@@ -649,6 +648,51 @@ text{
   font-size: 72px;
   font-weight: 700;
   color:aquamarine;
+  -webkit-user-select: none;
+  font-family: 'Spartan', sans-serif;
+}
+input[type="checkbox"]{
+  -webkit-appearance: initial;
+  appearance: initial;
+  background: #FFF;
+  width: 32px;
+  height: 32px;
+/* border: none; */
+  border: 1px solid rgb(211, 207, 199);
+  position: relative;	
+}
+input[type="checkbox"]:checked {
+background: #FFF;
+
+border: 1px solid rgb(168, 219, 174);
+}
+input[type="checkbox"]:before{
+  /* font-size: 124px;
+  font-weight: 700;
+  color: blue;
+  font-family: 'Spartan', sans-serif;
+  vertical-align: middle; */
+}
+input[type="checkbox"]:checked:after {
+  /* tick Unicode. */
+  content: "\2713";
+  
+  
+  color: rgb(0, 95, 13); 
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+
+}
+.timeVis{
+  color: cadetblue;
+  font-size: 14px;
+  font-weight: 600;
+  color:rgb(43, 20, 10);
   -webkit-user-select: none;
   font-family: 'Spartan', sans-serif;
 }
