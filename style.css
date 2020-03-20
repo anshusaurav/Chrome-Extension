@@ -387,7 +387,7 @@ span{
 #infographics{
   border: 4px groove rgb(73, 45, 70);
   width: 320px;
-  height: 100vh;
+  /* height: 100vh; */
   padding: 1rem;
   float: left;
   margin-top: 1rem;
@@ -399,6 +399,7 @@ span{
   justify-content: space-between;
   align-items: stretch;
   flex-direction: column;
+  border: 2px ridge rgb(73, 45, 70);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   background-position: center center;
@@ -561,4 +562,7 @@ h1 {
 h2{
   font-family: 'Spartan', sans-serif;
   text-align: center;
+}
+svg{
+  margin-top: -6rem;
 }

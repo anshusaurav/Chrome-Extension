@@ -4,9 +4,11 @@ const kMillisecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
 const kOneWeekAgo = (new Date).getTime() - kMillisecondsPerWeek;
 let historyDiv = document.getElementById('historyDiv');
 let infoOneDiv = document.querySelector('#infoOne')
+//let infoTwoDiv = document.querySelector('#infoTwo');
 const kColors = ['#93385FFF', '#9F6B99FF', '#4F3466FF', '#a04c85'];//,'#008080','#15F4EE'];
 let $ = document.getElementById.bind(document);
-let map = new Map();
+let mapDomain = new Map();
+let mapTransition = new Map();
 function constructHistory(historyItems) {
   let template = $('historyTemplate');
   for (let item of historyItems) {
@@ -26,18 +28,29 @@ function constructHistory(historyItems) {
     titleLink.href = item.url;
     let baseUrl = getMainDomain(item.url);
     console.log(baseUrl);
-    if(map.has(baseUrl)){
-      map.set(baseUrl , map.get(baseUrl)+item.visitCount);
-      //console.log(baseUrl +': ' +map.get(baseUrl));
+    // console.log('|'+getMainDomain(visitItems[i].visitId) + '|' + visitItems[i].transition);
+    if(mapDomain.has(baseUrl)){
+      mapDomain.set(baseUrl , mapDomain.get(baseUrl)+item.visitCount);
     } 
     else
     {
-      map.set(baseUrl , item.visitCount);
+      mapDomain.set(baseUrl , item.visitCount);
     }
-    //favicon.src = 'chrome://favicon/' + item.url;
+    chrome.history.getVisits({url: item.url}, function(visitItems) {
+      for (var j = 0; j < visitItems.length; j++) {
+          //visits.push(visitItems[j]);
+          if(mapTransition.get(visitItems[j].transition)){
+            mapTransition.set(visitItems[j].transition, mapTransition.get(visitItems[j].transition)+1);
+          }
+          else{
+            mapTransition.set(visitItems[j].transition, 1);
+          }
+      }
+      
+      
+    });
     titleLink.textContent = shorten(host,2)+'\n'+getDate(item.lastVisitTime);// + ' Total Visits: ' + item.visitCount + ' Total Typed: ' + item.typedCount;
     visittime.innerHTML = getDate(item.lastVisitTime);
-    //titleLink.appendChild(favicon);
     pageName.innerText = item.title;
     if (item.title == '') {
       pageName.innerText = host;
@@ -50,12 +63,11 @@ function constructHistory(historyItems) {
         });
       });
     historyDiv.appendChild(clone);
-    //historyItems.appendChild(infographicDiv);
   }
   let cn = 1;
   let sumClicks = 0;
-  map.forEach( (value, key) => {
-    console.log(`${cn++}-->${key}: ${value}`); // cucumber: 500 etc
+  mapDomain.forEach( (value, key) => {
+    //console.log(`${cn++}-->${key}: ${value}`); 
     sumClicks+=value;
   });
 
@@ -69,7 +81,7 @@ function constructHistory(historyItems) {
   let data = [];
 
   let cnt = 0, sumTillNow = 0 ;
-  map.forEach((value,key, map) =>{
+  mapDomain.forEach((value,key, mapDomain) =>{
     let obj = {};
     //console.log(key);
     obj.name = key;
@@ -96,7 +108,18 @@ function constructHistory(historyItems) {
     
   }
   dataset.push({name: 'Others', percent: sumPercent});
+  createFirstInfo('#infoOne',dataset);
+  cn = 0;
+  console.log('Size: ' +mapTransition.size);
+  mapTransition.forEach( (value, key) => {
+    console.log(`${cn++}-->${key}: ${value}`); 
+    sumClicks+=value;
+  });
+  //createFirstInfo('#infoTwo', dataset);
   //console.log('Rest %:'+sumPercent);
+  
+}
+function createFirstInfo(str,dataset){
   var pie=d3.layout.pie()
     .value(function(d){return d.percent})
     .sort(null)
@@ -108,12 +131,12 @@ function constructHistory(historyItems) {
   var innerRadius=100;
   
   var color = d3.scale.category20b();
-  
+  console.log('color: '+color);
   var arc=d3.svg.arc()
     .outerRadius(outerRadius)
     .innerRadius(innerRadius);
   
-  var svg=d3.select("#infoOne")
+  var svg=d3.select(str)
     .append("svg")
     .attr({
         width:w,
@@ -208,7 +231,6 @@ function constructHistory(historyItems) {
   setTimeout(restOfTheData,1000);
 }
 
-
 chrome.history.search({
       text: '',
       startTime: kOneWeekAgo,
@@ -259,9 +281,15 @@ chrome.history.search({text:'', maxResults:0}, function(historyItems) {
     for (var i = 0; i < historyItems.length; i++) {
         histories.push(historyItems[i]);
         chrome.history.getVisits({url: historyItems[i].url}, function(visitItems) {
-            for (var i = 0; i < visitItems.length; i++) {
-                visits.push(visitItems[i]);
-                //console.log('|'+getMainDomain(visitItems[i].visitId) + '|' + visitItems[i].transition);
+            for (var j = 0; j < visitItems.length; j++) {
+                visits.push(visitItems[j]);
+                //console.log('|'+getMainDomain(historyItems[i].url) + '|' + visitItems[i].transition);
+                if(mapTransition.get(visitItems[j].transition)){
+                  mapTransition.set(visitItems[j].transition, mapTransition.get(visitItems[j].transition)+1);
+                }
+                else{
+                  mapTransition.set(visitItems[j].transition, 1);
+                }
             }
             
             historiesProcessed++;
