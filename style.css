@@ -22,7 +22,7 @@
 
 body {
   margin: 0;
-  background: linear-gradient(to right, #F93D66, #6D47D9);
+  background: linear-gradient(to right, #35b969, #6D47D9);
 }
 
 /**
@@ -356,9 +356,17 @@ template {
 
 #searchBar {
   
+  margin-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  min-height: 95vh;
+  border: 4px groove rgb(73, 45, 70);
   float: left;
-  width: 250px;
+  /* width: 250px; */
   height: auto;
+  position: fixed;
+  top: 0px;
+  left: 80px;
 }
 body{
   line-height: 1.5;
@@ -379,18 +387,26 @@ span{
   grid-gap: 1rem;
   color: rgb(0, 0, 0);
   font-size: 12px;
-   max-width: 700px;
+  max-width: 700px;
   overflow: scroll;
   overflow-x: hidden;
   margin: 1rem;
+  position: relative; 
+  top: 0px;
+  left: 300px;
 }
 #infographics{
   border: 4px groove rgb(73, 45, 70);
   width: 320px;
-  /* height: 100vh; */
+  min-height: 91vh; 
   padding: 1rem;
   float: left;
   margin-top: 1rem;
+  position: fixed;
+  top: 0px;
+  left: 1080px;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 .history {
   
@@ -406,6 +422,8 @@ span{
 	background-repeat: no-repeat;
   background-size: 100%;
   position: relative;
+  opacity: 0.75;
+  
 }
 .history:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -430,7 +448,7 @@ img {
 .removeDiv{
   display: flex;
   justify-content: space-between;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 .imageDiv {
   position: relative;
@@ -454,13 +472,13 @@ img {
 
 
 #searchSubmit {
-  height: 30px;
+  height: 36px;
   cursor: pointer;
   color: rgb(60, 35, 82);
   font-weight: 800;
   font-size: 14px;
   background-color: #ddd;
-  /* border-radius: 8px; */
+  border-radius: 4px;
   border: 2px groove rgb(73, 45, 70);
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
@@ -468,14 +486,14 @@ img {
 }
 
 #deleteSelected {
-  height: 30px;
-  width: 185px;
+  height: 36px;
+  width: 242px;
   cursor: pointer;
   color: rgb(60, 35, 82);
   font-weight: 800;
   font-size: 14px;
   background-color: #ddd;
-  /* border-radius: 8px; */
+  border-radius: 4px;
   border: 2px groove rgb(73, 45, 70);
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
@@ -483,43 +501,43 @@ img {
 }
 
 #removeAll {
-  height: 30px;
-  width: 185px;
+  height: 36px;
+  width: 242px;
   cursor: pointer;
   color: rgb(60, 35, 82);
   font-weight: 800;
   font-size: 14px;
   background-color: #ddd;
-  /* border-radius: 8px; */
+  border-radius: 4px;
   border: 2px groove rgb(73, 45, 70);
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
 }
 
 #seeAll {
-  height: 30px;
-  width: 185px;
+  height: 36px;
+  width: 242px;
   cursor: pointer;
   color: rgb(60, 35, 82);
   font-weight: 800;
   font-size: 14px;
   background-color: #ddd;
-  /* border-radius: 8px; */
+  border-radius: 4px;
   border: 2px groove rgb(73, 45, 70);
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
-}
+} 
 
 #searchInput {
   height: 30px;
-  /* border-radius: 8px; */
+  border-radius: 4px;
   border: 2px groove rgb(73, 45, 70);
   padding-left: 4px;
   line-height: 1.5;
   color: rgb(60, 35, 82);
   font-weight: 400;
   font-size: 12px;
-  box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
+  box-shadow: inset 2px 2px 32px -3px rgba(46, 165, 173, 0.75);
   font-family: 'Spartan', sans-serif;
 }
 #selectAll{
@@ -532,21 +550,26 @@ img {
   background-color: #ddd;
   /* border-radius: 8px; */
   border: 2px groove rgb(73, 45, 70);
-  box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
+  box-shadow: inset 2px 2px 32px -3px rgba(46, 165, 173, 0.75);
   font-family: 'Spartan', sans-serif;
 }
 h1 {
   font-size: 2.4rem;
-  font-weight: 500;
-  font-family: 'Spartan', sans-serif;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
   color: rgb(60, 35, 82);
 }
 .titleLink{
   display: block;
   text-decoration: none;
   color: white;
+  font-size: 18px;
 }
-
+.visitTimer{
+  display: block;
+  text-decoration: none;
+  color: white;
+}
 
 
 .widget {
@@ -572,7 +595,10 @@ h2{
   text-align: center;
 }
 svg{
-  margin-top: -6rem;
+  margin-top: -15rem;
+  height: auto;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 text{
   font-family: 'Spartan', sans-serif;
@@ -582,7 +608,7 @@ text{
   position: absolute;
   background-color: rgba(226, 221, 221, 0.75);
   font-size: 72px;
-  opacity: 0.05;
+  /* opacity: 0.05; */
   width: 100%;
   height: 100%;
   left: 0px;
@@ -592,4 +618,9 @@ text{
   justify-content: center;
   align-items: center;
   font-weight: 700;
+  z-index: -10;
+  color:rgba(226, 221, 221, 0.474);
+}
+.shadow{
+  height: auto;
 }

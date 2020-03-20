@@ -11,25 +11,27 @@ let mapDomain = new Map();
 let mapTransition = new Map();
 function constructHistory(historyItems) {
   let template = $('historyTemplate');
+  
   for (let item of historyItems) {
-    let displayDiv = template.content.querySelector("#history, div");
+    let displayDiv = template.content.querySelector(".history, div");
     let randomColor = kColors[Math.floor(Math.random() * kColors.length)];
     displayDiv.style.backgroundColor = randomColor;
     let titleLink = template.content.querySelector('.titleLink, a');
     //titleLink.style.backgroundColor = 'transparent';
     
     let pageName = template.content.querySelector('.pageName, p');
-    let visittime = template.content.querySelector('.visitTime, p');
+    let visitTimer = template.content.querySelector('.visitTimer, p');
     let removeButton = template.content.querySelector('.removeButton, button');
     let checkbox = template.content.querySelector('.removeCheck, input');
     let bgCard = template.content.querySelector('.cardBackground, div');
+    //bgCard.textContent = getUniqueAlph(getMainDomain(item.url));
     //console.dir(bgCard);
     checkbox.setAttribute('value', item.url);
     let favicon = document.createElement('img');
     let host = new URL(item.url).host;
     titleLink.href = item.url;
     let baseUrl = getMainDomain(item.url);
-    console.log(baseUrl);
+    //console.log(baseUrl);
     // console.log('|'+getMainDomain(visitItems[i].visitId) + '|' + visitItems[i].transition);
     if(mapDomain.has(baseUrl)){
       mapDomain.set(baseUrl , mapDomain.get(baseUrl)+item.visitCount);
@@ -38,23 +40,10 @@ function constructHistory(historyItems) {
     {
       mapDomain.set(baseUrl , item.visitCount);
     }
-    // chrome.history.getVisits({url: item.url}, function(visitItems) {
-    //   for (var j = 0; j < visitItems.length; j++) {
-    //       //visits.push(visitItems[j]);
-    //       if(mapTransition.get(visitItems[j].transition)){
-    //         mapTransition.set(visitItems[j].transition, mapTransition.get(visitItems[j].transition)+1);
-    //       }
-    //       else{
-    //         mapTransition.set(visitItems[j].transition, 1);
-    //       }
-    //   }
-      
-      
-    // });
-    
-    titleLink.textContent = shorten(host,2)+'\n'+getDate(item.lastVisitTime);// + ' Total Visits: ' + item.visitCount + ' Total Typed: ' + item.typedCount;
-    //visittime.innerHTML = getDate(item.lastVisitTime);
-    pageName.innerText = item.title;
+   
+    titleLink.textContent = `${host}`;// + ' Total Visits: ' + item.visitCount + ' Total Typed: ' + item.typedCount;
+    //visitTimer.textContent = ''+getDate(item.lastVisitTime);
+    pageName.innerText = `${shorten(item.title,2)} \n ${getDate(item.lastVisitTime)}`;
     
     //bgCard.innerHTML = getUniqueAlph(getMainDomain(item.url));
     if (item.title == '') {
@@ -70,9 +59,9 @@ function constructHistory(historyItems) {
       });
       console.dir(clone);
     historyDiv.appendChild(clone);
-    console.log('BUGCARD ' + getUniqueAlph(getMainDomain(item.url)));
+    //console.log('BUGCARD ' + getUniqueAlph(getMainDomain(item.url)));
   console.dir(bgCard)
-  //bgCard.innerHTML = getUniqueAlph(getMainDomain(item.url));
+  
   }
   
   let cn = 1;
@@ -82,13 +71,6 @@ function constructHistory(historyItems) {
     sumClicks+=value;
   });
 
-  // var dataset = [
-  //   { name: 'Data', percent: 39.10 },
-  //   { name: 'Chrome', percent: 32.51 },
-  //   { name: 'Safari', percent: 13.68 },
-  //   { name: 'Firefox', percent: 8.71 },
-  //   { name: 'Others', percent: 6.01 }
-  // ];
   let data = [];
 
   let cnt = 0, sumTillNow = 0 ;
@@ -105,25 +87,50 @@ function constructHistory(historyItems) {
     
   });
   //dataset.push({name: 'Others', percent: Math.round((sumClicks-sumTillNow)*100/sumClicks)});
-  console.log(data);
+  //console.log(data);
+  let boolDoWeNeedMore = false;
   data.sort((a,b)=>{
     return a['percent']-b['percent'];
   }).reverse();
   let dataset = [];
   let sumPercent = 0.0;
   for(let i = 0; i < data.length; i++){
-    if(i < 4)
-    dataset.push(data[i]);
-    else
       sumPercent += data[i]['percent'];
-    
   }
-  dataset.push({name: 'Others', percent: sumPercent});
+    
+  // if(boolDoWeNeedMore){
+  //   let ind = 0;
+  //   for(let i = 4; i <data.length; i++){
+  //     if(data[i]['percent'] > 5.00){
+  //       dataset.push(data[i]);
+  //       sumPercent-=data[i]['percent'];
+  //     }
+  //     else{
+  //       ind = i;
+  //       break;
+  //     }
+  //   }
+  //   dataset.push({name: 'Others', percent: sumPercent});
+  // }
+  // else{
+  //   if(data.length>4)
+  //     dataset.push({name: 'Others', percent: sumPercent});
+  // }
+
+  for(let i = 0; i <Math.min(data.length,8); i++){
+    dataset.push(data[i]);
+    sumPercent-=data[i]['percent'];
+  }
+  console.log('Others sum: '+sumPercent + ' length: '+data.length);
+  if(data.length > 8){
+    dataset.push({name: 'Others', percent: sumPercent});
+  }
+  console.log(dataset);
   createFirstInfo('#infoOne',dataset);
   cn = 0;
-  console.log('Size: ' +mapTransition.size);
+  //console.log('Size: ' +mapTransition.size);
   mapTransition.forEach( (value, key) => {
-    console.log(`${cn++}-->${key}: ${value}`); 
+    //console.log(`${cn++}-->${key}: ${value}`); 
     sumClicks+=value;
   });
   //createFirstInfo('#infoTwo', dataset);
@@ -138,7 +145,7 @@ function createFirstInfo(str,dataset){
     .sort(null)
     .padAngle(.03);
   
-  var w=300,h=600;
+  var w=300,h=820;
   
   var outerRadius=w/2;
   var innerRadius=100;
@@ -146,7 +153,7 @@ function createFirstInfo(str,dataset){
   for(let i = 0; i < 5; i++){
     arrSetColor.push(shadeColor('',dataset[i].percent));
   }
-  var color = d3.scale.category20b().range(['#4F3466FF', '#9F6B99FF', '#93385FFF', '#a04c85','#008080','#15F4EE']);//['#0b1307', '#203815', '#365d22', '#7bc158', '#98cf7d', '#d3eac7']);
+  var color = d3.scale.category20b().range(['#4F3466FF', '#9F6B99FF', '#93385FFF', '#a04c85','#008080','#15F4EE','#437013', '#95C362', '#267257', '#AA6A39']);//['#0b1307', '#203815', '#365d22', '#7bc158', '#98cf7d', '#d3eac7']);
   //console.log('color: '+color('Anshu'));
   var arc=d3.svg.arc()
     .outerRadius(outerRadius)
@@ -273,22 +280,22 @@ $('deleteSelected').onclick = function() {
   location.reload();
 }
 
-$('removeAll').onclick = function() {
-  chrome.history.deleteAll(function() {
-    location.reload();
-  });
-}
+// $('removeAll').onclick = function() {
+//   chrome.history.deleteAll(function() {
+//     location.reload();
+//   });
+// }
 
 $('seeAll').onclick = function() {
   location.reload();
 }
-$('selectAll').onclick = function(){
-  let checkboxes = document.getElementsByTagName('input');
-  for (var i =0; i<checkboxes.length; i++) {
-    checkboxes[i].checked = true;
-  }
-  //location.reload();
-}
+// $('selectAll').onclick = function(){
+//   let checkboxes = document.getElementsByTagName('input');
+//   for (var i =0; i<checkboxes.length; i++) {
+//     checkboxes[i].checked = true;
+//   }
+//   //location.reload();
+// }
 var histories = [];
 var visits = [];
 
@@ -310,7 +317,7 @@ chrome.history.search({text:'', maxResults:0}, function(historyItems) {
             
             historiesProcessed++;
             if (historiesProcessed === historyItems.length) {
-                console.log(visits.length + ' visits');
+                //console.log(visits.length + ' visits');
             }
         });
     }
@@ -318,18 +325,18 @@ chrome.history.search({text:'', maxResults:0}, function(historyItems) {
     
     //console.log(historyItems);
 }); 
-
+//:33 GMT+0530 (India Standard Time)
 function getDate(ms){
   let date = new Date(ms);// Milliseconds to date
   let d = new Date();
   let n = d.getTime();
   let ts = getSecondsToday();
   if(n-ms <=ts)
-    return "Today " + date.toString().substr(16);
+    return "Today " + date.toString().slice(16,date.toString().length-34);
   else if(n-ms >=ts && n-ms <= 24*60*60*1000 + ts)
-    return "Yesterday " + date.toString().substr(16);
+    return "Yesterday " + date.toString().slice(16,date.toString().length-34);
   
-  return (date.toString());
+  return (date.toString().slice(0,date.toString().length-34));
 }
 
 function getSecondsToday() {
@@ -360,9 +367,9 @@ function getMainDomain(url){
 }
 
 function shorten(str,n){
-  const lenPerLine = 22;
-  if(str.length > n*22){
-    return str.substr(0,n*22)+'...';
+  const lenPerLine = 32;
+  if(str.length > n*lenPerLine){
+    return str.substr(0,n*lenPerLine)+'...';
   }
   return str;
 }
