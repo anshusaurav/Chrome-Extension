@@ -22,7 +22,7 @@ function constructHistory(historyItems) {
     let visittime = template.content.querySelector('.visitTime, p');
     let removeButton = template.content.querySelector('.removeButton, button');
     let checkbox = template.content.querySelector('.removeCheck, input');
-    let bgCard = template.content.querySelector('cardBackground, div');
+    let bgCard = template.content.querySelector('.cardBackground, div');
     //console.dir(bgCard);
     checkbox.setAttribute('value', item.url);
     let favicon = document.createElement('img');
@@ -53,9 +53,10 @@ function constructHistory(historyItems) {
     // });
     
     titleLink.textContent = shorten(host,2)+'\n'+getDate(item.lastVisitTime);// + ' Total Visits: ' + item.visitCount + ' Total Typed: ' + item.typedCount;
-    visittime.innerHTML = getDate(item.lastVisitTime);
+    //visittime.innerHTML = getDate(item.lastVisitTime);
     pageName.innerText = item.title;
-    //bgCard.textContent = getUniqueAlph(getMainDomain(item.url));
+    
+    //bgCard.innerHTML = getUniqueAlph(getMainDomain(item.url));
     if (item.title == '') {
       pageName.innerText = host;
     }
@@ -67,8 +68,13 @@ function constructHistory(historyItems) {
           location.reload();
         });
       });
+      console.dir(clone);
     historyDiv.appendChild(clone);
+    console.log('BUGCARD ' + getUniqueAlph(getMainDomain(item.url)));
+  console.dir(bgCard)
+  //bgCard.innerHTML = getUniqueAlph(getMainDomain(item.url));
   }
+  
   let cn = 1;
   let sumClicks = 0;
   mapDomain.forEach( (value, key) => {
@@ -123,6 +129,8 @@ function constructHistory(historyItems) {
   //createFirstInfo('#infoTwo', dataset);
   //console.log('Rest %:'+sumPercent);
   
+  
+
 }
 function createFirstInfo(str,dataset){
   var pie=d3.layout.pie()
@@ -134,9 +142,12 @@ function createFirstInfo(str,dataset){
   
   var outerRadius=w/2;
   var innerRadius=100;
-  
-  var color = d3.scale.category20b();
-  console.log('color: '+color);
+  let arrSetColor =[];
+  for(let i = 0; i < 5; i++){
+    arrSetColor.push(shadeColor('',dataset[i].percent));
+  }
+  var color = d3.scale.category20b().range(['#4F3466FF', '#9F6B99FF', '#93385FFF', '#a04c85','#008080','#15F4EE']);//['#0b1307', '#203815', '#365d22', '#7bc158', '#98cf7d', '#d3eac7']);
+  //console.log('color: '+color('Anshu'));
   var arc=d3.svg.arc()
     .outerRadius(outerRadius)
     .innerRadius(innerRadius);
@@ -158,8 +169,8 @@ function createFirstInfo(str,dataset){
     .attr({
         d:arc,
         fill:function(d,i){
-            console.log(color(d.data.name));
-            return color(d.data.name);//shadeColor(d.color.percent);//color(d.data.name);
+            return (color(d.data.name));
+            //return shadeColor('',d.data.percent);//shadeColor(d.color.percent);//color(d.data.name);
         }
     });
   
@@ -190,7 +201,7 @@ function createFirstInfo(str,dataset){
           })
           .style({
               fill:'#fff',
-              'font-size':'10px'
+              'font-size':'14px'
           });
   
       var legendRectSize=16;
@@ -355,30 +366,57 @@ function shorten(str,n){
   }
   return str;
 }
-function shadeColor(color, percent) {
-  color = '#341252';
-  var R = parseInt(color.substring(1,3),16);
-  var G = parseInt(color.substring(3,5),16);
-  var B = parseInt(color.substring(5,7),16);
+// function shadeColor(color, percent) {
+//   color = '#341252';
+//   var R = parseInt(color.substring(1,3),16);
+//   var G = parseInt(color.substring(3,5),16);
+//   var B = parseInt(color.substring(5,7),16);
 
-  R = parseInt(R * (100 + percent) / 100);
-  G = parseInt(G * (100 + percent) / 100);
-  B = parseInt(B * (100 + percent) / 100);
+//   R = parseInt(R * (percent) / 100);
+//   G = parseInt(G * (percent) / 100);
+//   B = parseInt(B * (percent) / 100);
 
-  R = (R<255)?R:255;  
-  G = (G<255)?G:255;  
-  B = (B<255)?B:255;  
+//   R = (R<255)?R:255;  
+//   G = (G<255)?G:255;  
+//   B = (B<255)?B:255;  
 
-  var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
-  var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
-  var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+//   var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
+//   var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
+//   var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+//   console.log('COLOR #'+RR+GG+BB + " " + percent);
+//   return "#"+RR+GG+BB;
+// }
+function shadeColor(col, amt){
+  var usePound = false;
+  col = '#66c2a5';
+  amt = 50-amt;
+  if (col[0] == "#") {
+      col = col.slice(1);
+      usePound = true;
+  }
 
-  return "#"+RR+GG+BB;
+  var num = parseInt(col,16);
+
+  var r = (num >> 16) + amt;
+
+  if (r > 255) r = 255;
+  else if  (r < 0) r = 0;
+
+  var b = ((num >> 8) & 0x00FF) + amt;
+
+  if (b > 255) b = 255;
+  else if  (b < 0) b = 0;
+
+  var g = (num & 0x0000FF) + amt;
+
+  if (g > 255) g = 255;
+  else if (g < 0) g = 0;
+
+  return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
 }
-
 function getUniqueAlph(str){
   if(str.toLowerCase().startsWith('www.'))
-    return str.charAt(4);
+    return str.charAt(4).toUpperCase();
   else
-    return str.charAt(0);
+    return str.charAt(0).toUpperCase();
 }
