@@ -22,6 +22,8 @@ function constructHistory(historyItems) {
     let visittime = template.content.querySelector('.visitTime, p');
     let removeButton = template.content.querySelector('.removeButton, button');
     let checkbox = template.content.querySelector('.removeCheck, input');
+    let bgCard = template.content.querySelector('cardBackground, div');
+    //console.dir(bgCard);
     checkbox.setAttribute('value', item.url);
     let favicon = document.createElement('img');
     let host = new URL(item.url).host;
@@ -36,26 +38,29 @@ function constructHistory(historyItems) {
     {
       mapDomain.set(baseUrl , item.visitCount);
     }
-    chrome.history.getVisits({url: item.url}, function(visitItems) {
-      for (var j = 0; j < visitItems.length; j++) {
-          //visits.push(visitItems[j]);
-          if(mapTransition.get(visitItems[j].transition)){
-            mapTransition.set(visitItems[j].transition, mapTransition.get(visitItems[j].transition)+1);
-          }
-          else{
-            mapTransition.set(visitItems[j].transition, 1);
-          }
-      }
+    // chrome.history.getVisits({url: item.url}, function(visitItems) {
+    //   for (var j = 0; j < visitItems.length; j++) {
+    //       //visits.push(visitItems[j]);
+    //       if(mapTransition.get(visitItems[j].transition)){
+    //         mapTransition.set(visitItems[j].transition, mapTransition.get(visitItems[j].transition)+1);
+    //       }
+    //       else{
+    //         mapTransition.set(visitItems[j].transition, 1);
+    //       }
+    //   }
       
       
-    });
+    // });
+    
     titleLink.textContent = shorten(host,2)+'\n'+getDate(item.lastVisitTime);// + ' Total Visits: ' + item.visitCount + ' Total Typed: ' + item.typedCount;
     visittime.innerHTML = getDate(item.lastVisitTime);
     pageName.innerText = item.title;
+    //bgCard.textContent = getUniqueAlph(getMainDomain(item.url));
     if (item.title == '') {
       pageName.innerText = host;
     }
     var clone = document.importNode(template.content, true);
+    console.dir(clone);
     clone.querySelector('.removeButton, button')
       .addEventListener('click', function() {
         chrome.history.deleteUrl({url: item.url}, function() {
@@ -369,4 +374,11 @@ function shadeColor(color, percent) {
   var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
 
   return "#"+RR+GG+BB;
+}
+
+function getUniqueAlph(str){
+  if(str.toLowerCase().startsWith('www.'))
+    return str.charAt(4);
+  else
+    return str.charAt(0);
 }
