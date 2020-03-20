@@ -477,11 +477,12 @@ img {
   color: rgb(60, 35, 82);
   font-weight: 800;
   font-size: 14px;
-  background-color: #ddd;
+  /* background-color: #ddd; */
   border-radius: 4px;
   border: 2px groove rgb(73, 45, 70);
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
+  background: linear-gradient(to right, #35b969, #6D47D9);
 
 }
 
@@ -492,14 +493,16 @@ img {
   color: rgb(60, 35, 82);
   font-weight: 800;
   font-size: 14px;
-  background-color: #ddd;
+  /* background-color: #ddd; */
   border-radius: 4px;
   border: 2px groove rgb(73, 45, 70);
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
-  
+  background: linear-gradient(to right, #35b969, #6D47D9);
 }
-
+#removeAll:hover, #seeAll:hover, #searchSubmit:hover, #deleteSelected:hover{
+  background: linear-gradient(to right, #6D47D9,#35b969);
+}
 #removeAll {
   height: 36px;
   width: 242px;
@@ -507,11 +510,12 @@ img {
   color: rgb(60, 35, 82);
   font-weight: 800;
   font-size: 14px;
-  background-color: #ddd;
+  /* background-color: #ddd; */
   border-radius: 4px;
   border: 2px groove rgb(73, 45, 70);
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
+  background: linear-gradient(to right, #35b969, #6D47D9);
 }
 
 #seeAll {
@@ -521,11 +525,12 @@ img {
   color: rgb(60, 35, 82);
   font-weight: 800;
   font-size: 14px;
-  background-color: #ddd;
+  /* background-color: #ddd; */
   border-radius: 4px;
   border: 2px groove rgb(73, 45, 70);
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
+  background: linear-gradient(to right, #35b969, #6D47D9);
 } 
 
 #searchInput {
@@ -619,8 +624,14 @@ text{
   align-items: center;
   font-weight: 700;
   z-index: -10;
-  color:rgba(226, 221, 221, 0.474);
+  color:rgba(86, 84, 190, 0.452);
 }
 .shadow{
   height: auto;
+}
+.bgSpan{
+  font-size: 72px;
+  font-weight: 700;
+  -webkit-user-select: none;
+  font-family: 'Spartan', sans-serif;
 }

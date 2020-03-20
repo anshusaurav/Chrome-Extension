@@ -5,6 +5,7 @@ const kOneWeekAgo = (new Date).getTime() - kMillisecondsPerWeek;
 let historyDiv = document.getElementById('historyDiv');
 let infoOneDiv = document.querySelector('#infoOne')
 //let infoTwoDiv = document.querySelector('#infoTwo');
+
 const kColors = ['#93385FFF', '#9F6B99FF', '#4F3466FF', '#a04c85'];//,'#008080','#15F4EE'];
 let $ = document.getElementById.bind(document);
 let mapDomain = new Map();
@@ -24,6 +25,7 @@ function constructHistory(historyItems) {
     let removeButton = template.content.querySelector('.removeButton, button');
     let checkbox = template.content.querySelector('.removeCheck, input');
     let bgCard = template.content.querySelector('.cardBackground, div');
+    let bgSpan =  template.content.querySelector('.bgSpan, span');
     //bgCard.textContent = getUniqueAlph(getMainDomain(item.url));
     //console.dir(bgCard);
     checkbox.setAttribute('value', item.url);
@@ -45,7 +47,8 @@ function constructHistory(historyItems) {
     //visitTimer.textContent = ''+getDate(item.lastVisitTime);
     pageName.innerText = `${shorten(item.title,2)} \n ${getDate(item.lastVisitTime)}`;
     
-    //bgCard.innerHTML = getUniqueAlph(getMainDomain(item.url));
+    console.log('BUGCARD ' + getUniqueAlph(getMainDomain(item.url)));
+    bgSpan.innerHTML = getUniqueAlph(getMainDomain(item.url));
     if (item.title == '') {
       pageName.innerText = host;
     }
@@ -153,7 +156,7 @@ function createFirstInfo(str,dataset){
   for(let i = 0; i < 5; i++){
     arrSetColor.push(shadeColor('',dataset[i].percent));
   }
-  var color = d3.scale.category20b().range(['#4F3466FF', '#9F6B99FF', '#93385FFF', '#a04c85','#008080','#15F4EE','#437013', '#95C362', '#267257', '#AA6A39']);//['#0b1307', '#203815', '#365d22', '#7bc158', '#98cf7d', '#d3eac7']);
+  var color = d3.scale.category20b().range(['#4F3466FF', '#93385FFF', '#9F6B99FF', '#a04c85','#008080','#34655a','#437013', '#95C362', '#267257', '#AA6A39']);//['#0b1307', '#203815', '#365d22', '#7bc158', '#98cf7d', '#d3eac7']);
   //console.log('color: '+color('Anshu'));
   var arc=d3.svg.arc()
     .outerRadius(outerRadius)
@@ -422,8 +425,11 @@ function shadeColor(col, amt){
   return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
 }
 function getUniqueAlph(str){
-  if(str.toLowerCase().startsWith('www.'))
-    return str.charAt(4).toUpperCase();
-  else
-    return str.charAt(0).toUpperCase();
+  
+  let arr = str.split('.');
+  return arr[arr.length-2].charAt(0).toUpperCase();
+  // if(str.toLowerCase().startsWith('www.'))
+  //   return str.charAt(4).toUpperCase();
+  // else
+  //   return str.charAt(0).toUpperCase();
 }
