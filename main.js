@@ -100,25 +100,6 @@ function constructHistory(historyItems) {
   for(let i = 0; i < data.length; i++){
       sumPercent += data[i]['percent'];
   }
-    
-  // if(boolDoWeNeedMore){
-  //   let ind = 0;
-  //   for(let i = 4; i <data.length; i++){
-  //     if(data[i]['percent'] > 5.00){
-  //       dataset.push(data[i]);
-  //       sumPercent-=data[i]['percent'];
-  //     }
-  //     else{
-  //       ind = i;
-  //       break;
-  //     }
-  //   }
-  //   dataset.push({name: 'Others', percent: sumPercent});
-  // }
-  // else{
-  //   if(data.length>4)
-  //     dataset.push({name: 'Others', percent: sumPercent});
-  // }
 
   for(let i = 0; i <Math.min(data.length,8); i++){
     dataset.push(data[i]);
@@ -131,16 +112,9 @@ function constructHistory(historyItems) {
   console.log(dataset);
   createFirstInfo('#infoOne',dataset);
   cn = 0;
-  //console.log('Size: ' +mapTransition.size);
   mapTransition.forEach( (value, key) => {
-    //console.log(`${cn++}-->${key}: ${value}`); 
     sumClicks+=value;
   });
-  //createFirstInfo('#infoTwo', dataset);
-  //console.log('Rest %:'+sumPercent);
-  
-  
-
 }
 function createFirstInfo(str,dataset){
   var pie=d3.layout.pie()
@@ -152,12 +126,7 @@ function createFirstInfo(str,dataset){
   
   var outerRadius=w/2;
   var innerRadius=100;
-  let arrSetColor =[];
-  for(let i = 0; i < 5; i++){
-    arrSetColor.push(shadeColor('',dataset[i].percent));
-  }
   var color = d3.scale.category20b().range(['#4F3466FF', '#93385FFF', '#9F6B99FF', '#a04c85','#008080','#34655a','#437013', '#95C362', '#267257', '#AA6A39']);//['#0b1307', '#203815', '#365d22', '#7bc158', '#98cf7d', '#d3eac7']);
-  //console.log('color: '+color('Anshu'));
   var arc=d3.svg.arc()
     .outerRadius(outerRadius)
     .innerRadius(innerRadius);
@@ -180,7 +149,6 @@ function createFirstInfo(str,dataset){
         d:arc,
         fill:function(d,i){
             return (color(d.data.name));
-            //return shadeColor('',d.data.percent);//shadeColor(d.color.percent);//color(d.data.name);
         }
     });
   
@@ -292,13 +260,13 @@ $('deleteSelected').onclick = function() {
 $('seeAll').onclick = function() {
   location.reload();
 }
-// $('selectAll').onclick = function(){
-//   let checkboxes = document.getElementsByTagName('input');
-//   for (var i =0; i<checkboxes.length; i++) {
-//     checkboxes[i].checked = true;
-//   }
-//   //location.reload();
-// }
+$('selectAll').onclick = function(){
+  let checkboxes = document.getElementsByTagName('input');
+  for (var i =0; i<checkboxes.length; i++) {
+    checkboxes[i].checked = true;
+  }
+  //location.reload();
+}
 var histories = [];
 var visits = [];
 
@@ -396,36 +364,38 @@ function shorten(str,n){
 //   console.log('COLOR #'+RR+GG+BB + " " + percent);
 //   return "#"+RR+GG+BB;
 // }
-function shadeColor(col, amt){
-  var usePound = false;
-  col = '#66c2a5';
-  amt = 50-amt;
-  if (col[0] == "#") {
-      col = col.slice(1);
-      usePound = true;
-  }
+// function shadeColor(col, amt){
+//   var usePound = false;
+//   col = '#66c2a5';
+//   amt = 50-amt;
+//   if (col[0] == "#") {
+//       col = col.slice(1);
+//       usePound = true;
+//   }
 
-  var num = parseInt(col,16);
+//   var num = parseInt(col,16);
 
-  var r = (num >> 16) + amt;
+//   var r = (num >> 16) + amt;
 
-  if (r > 255) r = 255;
-  else if  (r < 0) r = 0;
+//   if (r > 255) r = 255;
+//   else if  (r < 0) r = 0;
 
-  var b = ((num >> 8) & 0x00FF) + amt;
+//   var b = ((num >> 8) & 0x00FF) + amt;
 
-  if (b > 255) b = 255;
-  else if  (b < 0) b = 0;
+//   if (b > 255) b = 255;
+//   else if  (b < 0) b = 0;
 
-  var g = (num & 0x0000FF) + amt;
+//   var g = (num & 0x0000FF) + amt;
 
-  if (g > 255) g = 255;
-  else if (g < 0) g = 0;
+//   if (g > 255) g = 255;
+//   else if (g < 0) g = 0;
 
-  return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
-}
+//   return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+// }
 function getUniqueAlph(str){
-  
+  //console.log(str);
+  if(str.trim().length ==0)
+  return 'A';
   let arr = str.split('.');
   return arr[arr.length-2].charAt(0).toUpperCase();
   // if(str.toLowerCase().startsWith('www.'))

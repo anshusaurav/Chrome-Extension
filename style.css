@@ -459,14 +459,16 @@ img {
  .removeButton {
   border: none;
   background-color: #ddd;
-  /* border-radius: 8px; */
+  border-radius: 8px;
   border: 2px groove rgb(73, 45, 70);
   box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
 }
 
 .urlDiv {
-  height: 90px;
+  /* height: 90px; */
   overflow-y: hidden;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 
@@ -500,8 +502,9 @@ img {
   font-family: 'Spartan', sans-serif;
   background: linear-gradient(to right, #35b969, #6D47D9);
 }
-#removeAll:hover, #seeAll:hover, #searchSubmit:hover, #deleteSelected:hover{
+#removeAll:hover, #seeAll:hover, #searchSubmit:hover, #deleteSelected:hover, #selectAll:hover{
   background: linear-gradient(to right, #6D47D9,#35b969);
+  scale: 1.1;
 }
 #removeAll {
   height: 36px;
@@ -546,17 +549,18 @@ img {
   font-family: 'Spartan', sans-serif;
 }
 #selectAll{
-  height: 30px;
-  width: 185px;
+  height: 36px;
+  width: 242px;
   cursor: pointer;
   color: rgb(60, 35, 82);
   font-weight: 800;
   font-size: 14px;
-  background-color: #ddd;
-  /* border-radius: 8px; */
+  /* background-color: #ddd; */
+  border-radius: 4px;
   border: 2px groove rgb(73, 45, 70);
-  box-shadow: inset 2px 2px 32px -3px rgba(46, 165, 173, 0.75);
+  box-shadow: inset 2px 2px 32px -3px rgba(182, 177, 177, 0.75);
   font-family: 'Spartan', sans-serif;
+  background: linear-gradient(to right, #35b969, #6D47D9);
 }
 h1 {
   font-size: 2.4rem;
@@ -611,7 +615,7 @@ text{
 }
 .cardBackground{
   position: absolute;
-  background-color: rgba(226, 221, 221, 0.75);
+  background: linear-gradient(to bottom,#6D47D9, #35b969);
   font-size: 72px;
   /* opacity: 0.05; */
   width: 100%;
@@ -624,7 +628,7 @@ text{
   align-items: center;
   font-weight: 700;
   z-index: -10;
-  color:rgba(86, 84, 190, 0.452);
+  color:rgba(255, 117, 186, 0.452);
 }
 .shadow{
   height: auto;
