@@ -696,3 +696,7 @@ input[type="checkbox"]:checked:after {
   -webkit-user-select: none;
   font-family: 'Spartan', sans-serif;
 }
+
+.path:hover{
+  scale: 1.1;
+}
