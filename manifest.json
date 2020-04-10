@@ -1,6 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Chrome X",
+  "short_name":"chromeX",
   "description": "Show history",
   "version": "1.0",
   "chrome_url_overrides":{
@@ -14,6 +15,9 @@
     "chrome://favicon/"
   ],
   "icons": {
-    "16":"init.PNG"
+    "16":"init.PNG",
+    "32": "init1.PNG",
+    "48": "init2.PNG",
+    "128": "init3.PNG"
   }
 }

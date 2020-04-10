@@ -348,14 +348,15 @@ template {
 [hidden] {
   display: none;
 }
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     /* width: 5px;  remove scrollbar space */
     /* margin-left: 1rem; */
-    background: transparent;  /* make scrollbar invisible */
-}
+    /* background: blue;  make scrollbar invisible */
+} */
 .main-grid{
   display: grid;
   grid-template-columns: 1.5fr 6fr 1.5fr;
+  grid-gap: 1rem;
   justify-content: space-between;
 }
 #searchBar {
@@ -363,8 +364,8 @@ template {
   margin-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  min-height: 95vh;
-  max-height: 95vh;
+  min-height: 90vh;
+  max-height: 90vh;
   border: 4px groove rgb(73, 45, 70);
   /* float: left; */
   width: 16vw;
@@ -391,12 +392,13 @@ span{
   /* float: left; */
   display: grid;
   grid-template-columns: repeat(3, minmax(13vw, 1fr));
-  grid-gap: 1rem;
+  grid-gap: 0.5rem;
   color: rgb(0, 0, 0);
   font-size: 12px;
-  width: 55vw;
+  width: 54vw;
   overflow: scroll;
   overflow-x: hidden;
+  overflow-y: auto;
   margin: 1rem;
   position: relative; 
   top: 0px;
@@ -408,8 +410,8 @@ span{
   margin-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  min-height: 95vh;
-  max-height: 95vh;
+  min-height: 90vh;
+  max-height: 90vh;
   /* float: left; */
   position: fixed;
   top: 0px;
