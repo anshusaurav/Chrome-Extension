@@ -244,7 +244,7 @@ function createFirstInfo (str, dataset) {
       })
       .style({
         fill: 'black',
-        'font-size': '16px',
+        'font-size': '14px',
         'font-weight': '600'
       })
   }

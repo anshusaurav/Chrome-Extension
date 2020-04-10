@@ -366,8 +366,8 @@ template {
   margin-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  min-height: 90vh;
-  max-height: 90vh;
+  min-height: 95vh;
+  max-height: 95vh;
   border: 4px groove rgb(73, 45, 70);
   /* float: left; */
   /* width: 16%; */
@@ -410,8 +410,8 @@ span{
   margin-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  min-height: 90vh;
-  max-height: 90vh;
+  min-height: 95vh;
+  max-height: 95vh;
   /* float: left; */
   /* position: fixed; */
   /* top: 0px;
