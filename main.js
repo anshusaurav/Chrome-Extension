@@ -1,6 +1,6 @@
 
 
-const kMillisecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
+const kMillisecondsPerWeek = 1000 * 60 * 60 * 24 * 20;
 const kOneWeekAgo = (new Date).getTime() - kMillisecondsPerWeek;
 let historyDiv = document.getElementById('historyDiv');
 let infoOneDiv = document.querySelector('#infoOne');

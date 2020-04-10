@@ -353,26 +353,32 @@ template {
     /* margin-left: 1rem; */
     background: transparent;  /* make scrollbar invisible */
 }
-
+.main-grid{
+  display: grid;
+  grid-template-columns: 1.5fr 6fr 1.5fr;
+  justify-content: space-between;
+}
 #searchBar {
   
   margin-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
   min-height: 95vh;
+  max-height: 95vh;
   border: 4px groove rgb(73, 45, 70);
-  float: left;
+  /* float: left; */
+  width: 16vw;
   /* width: 250px; */
   height: auto;
   position: fixed;
   top: 0px;
-  left: 80px;
+  left: 2rem;
 }
 body{
   line-height: 1.5;
 }
 .container{
-  width: 1400px;
+  width: 100vw;
   margin: 0 auto;
 }
 span{
@@ -382,31 +388,32 @@ span{
   color: rgb(139, 54, 39);
 }
 #historyDiv {
-  float: left;
+  /* float: left; */
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, minmax(13vw, 1fr));
   grid-gap: 1rem;
   color: rgb(0, 0, 0);
   font-size: 12px;
-  max-width: 700px;
+  width: 55vw;
   overflow: scroll;
   overflow-x: hidden;
   margin: 1rem;
   position: relative; 
   top: 0px;
-  left: 300px;
+  left: 42vh;
 }
 #infographics{
   border: 4px groove rgb(73, 45, 70);
-  width: 320px;
-  min-height: 91vh; 
-  max-height: 91vh; 
-  padding: 1rem;
-  float: left;
+  width: 18.5vw;
   margin-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  min-height: 95vh;
+  max-height: 95vh;
+  /* float: left; */
   position: fixed;
   top: 0px;
-  right: 80px;
+  right: 2rem;
 }
 .history {
   
