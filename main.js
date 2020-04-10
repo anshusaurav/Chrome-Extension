@@ -40,6 +40,7 @@ function constructHistory (historyItems) {
 
       titleLink.textContent = `${host}` // + ' Total Visits: ' + item.visitCount + ' Total Typed: ' + item.typedCount;
       //visitTimer.textContent = ''+getDate(item.lastVisitTime);
+      console.log(shorten(item.title,2));
       pageName.innerHTML = `${shorten(
         item.title,
         2
@@ -51,7 +52,7 @@ function constructHistory (historyItems) {
         pageName.innerText = host
       }
       var clone = document.importNode(template.content, true)
-      console.dir(clone)
+      //console.dir(clone)
       clone
         .querySelector('.removeButton, button')
         .addEventListener('click', function () {
@@ -59,10 +60,10 @@ function constructHistory (historyItems) {
             location.reload()
           })
         })
-      console.dir(clone)
+      //console.dir(clone)
       historyDiv.appendChild(clone)
       //console.log('BUGCARD ' + getUniqueAlph(getMainDomain(item.url)));
-      console.dir(bgCard)
+      //console.dir(bgCard)
     }
 
   let cn = 1

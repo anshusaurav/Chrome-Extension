@@ -10,6 +10,7 @@
 
  html {
   line-height: 1.15; /* 1 */
+  font-size: 16px;
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
@@ -22,6 +23,7 @@
 
 body {
   margin: 0;
+  line-height: 1.5;
   background: linear-gradient(to right, #35b969, #6D47D9);
 }
 
@@ -352,7 +354,7 @@ template {
     /* width: 5px;  remove scrollbar space */
     /* margin-left: 1rem; */
     /* background: blue;  make scrollbar invisible */
-} */
+
 .main-grid{
   display: grid;
   grid-template-columns: 1.5fr 6fr 1.5fr;
@@ -368,18 +370,16 @@ template {
   max-height: 90vh;
   border: 4px groove rgb(73, 45, 70);
   /* float: left; */
-  width: 16vw;
+  /* width: 16%; */
   /* width: 250px; */
   height: auto;
-  position: fixed;
+  /* position: fixed;
   top: 0px;
-  left: 2rem;
+  left: 2rem; */
 }
-body{
-  line-height: 1.5;
-}
+
 .container{
-  width: 100vw;
+  width: 96vw;
   margin: 0 auto;
 }
 span{
@@ -391,31 +391,31 @@ span{
 #historyDiv {
   /* float: left; */
   display: grid;
-  grid-template-columns: repeat(3, minmax(13vw, 1fr));
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   grid-gap: 0.5rem;
   color: rgb(0, 0, 0);
   font-size: 12px;
-  width: 54vw;
+  /* width: 54%; */
   overflow: scroll;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   overflow-y: auto;
   margin: 1rem;
-  position: relative; 
+  /* position: relative; 
   top: 0px;
-  left: 42vh;
+  left: 42vh; */
 }
 #infographics{
   border: 4px groove rgb(73, 45, 70);
-  width: 18.5vw;
+  /* width: 30%; */
   margin-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
   min-height: 90vh;
   max-height: 90vh;
   /* float: left; */
-  position: fixed;
-  top: 0px;
-  right: 2rem;
+  /* position: fixed; */
+  /* top: 0px;
+  right: 2rem; */
 }
 .history {
   
@@ -462,7 +462,6 @@ img {
 .imageDiv {
   position: relative;
   right: 0;
-  overflow-y: hidden;
 }
 
  .removeButton {
