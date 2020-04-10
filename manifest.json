@@ -10,6 +10,10 @@
     "default_title": "History"
   },
   "permissions": [
-    "history"
-  ]
+    "history",
+    "chrome://favicon/"
+  ],
+  "icons": {
+    "16":"init.PNG"
+  }
 }

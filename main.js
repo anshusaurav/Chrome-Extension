@@ -401,8 +401,5 @@ function getUniqueAlph(str){
   if(arr.length >= 2)
   return arr[arr.length-2].charAt(0).toUpperCase();
   return '';
-  // if(str.toLowerCase().startsWith('www.'))
-  //   return str.charAt(4).toUpperCase();
-  // else
-  //   return str.charAt(0).toUpperCase();
+ 
 }

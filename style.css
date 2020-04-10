@@ -400,6 +400,7 @@ span{
   border: 4px groove rgb(73, 45, 70);
   width: 320px;
   min-height: 91vh; 
+  max-height: 91vh; 
   padding: 1rem;
   float: left;
   margin-top: 1rem;
