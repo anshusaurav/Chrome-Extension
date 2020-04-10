@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Chrome X",
   "short_name":"chromeX",
-  "description": "Show history",
+  "description": "ChromeX is easy to use. The one of the best cleaning tools for your Chromebook, Windows PC, Mac or Linux. https://github.com/anshusaurav/Chrome-Extension",
   "version": "1.0",
   "chrome_url_overrides":{
     "history" : "history.html"
