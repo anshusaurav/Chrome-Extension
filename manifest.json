@@ -15,9 +15,9 @@
     "chrome://favicon/"
   ],
   "icons": {
-    "16":"init.PNG",
-    "32": "init1.PNG",
-    "48": "init2.PNG",
-    "128": "init3.PNG"
+    "16":"li16X16.PNG",
+    "32": "li32X32.PNG",
+    "48": "li64X64.PNG",
+    "128": "li128X128.PNG"
   }
 }

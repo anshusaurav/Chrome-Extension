@@ -202,7 +202,7 @@ function createFirstInfo (str, dataset) {
       })
       .style({
         fill: '#fff',
-        'font-size': '14px'
+        'font-size': '11px'
       })
 
     var legendRectSize = 16
@@ -243,8 +243,9 @@ function createFirstInfo (str, dataset) {
         return d
       })
       .style({
-        fill: '#fff',
-        'font-size': '14px'
+        fill: 'black',
+        'font-size': '16px',
+        'font-weight': '600'
       })
   }
 
@@ -262,7 +263,7 @@ chrome.history.search(
 
 $('searchSubmit').onclick = function () {
   historyDiv.innerHTML = ' '
-  //infoOne.innerHTML = '';
+  infoOne.innerHTML = '';
   let searchQuery = document.getElementById('searchInput').value
   chrome.history.search(
     {
