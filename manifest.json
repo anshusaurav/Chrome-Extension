@@ -3,7 +3,7 @@
   "name": "Chrome X",
   "short_name":"chromeX",
   "description": "The one of the best cleaning tools for your Chromebook, Windows PC, Mac or Linux. https://github.com/anshusaurav/Chrome-Extension",
-  "version": "2.0",
+  "version": "2.1",
   "chrome_url_overrides":{
     "history" : "history.html"
   },
