@@ -412,13 +412,17 @@ span{
   padding-right: 1rem;
   min-height: 95vh;
   max-height: 95vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
+  /* align-items: center; */
   /* float: left; */
   /* position: fixed; */
   /* top: 0px;
   right: 2rem; */
+}
+.infoGr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .history {
   
